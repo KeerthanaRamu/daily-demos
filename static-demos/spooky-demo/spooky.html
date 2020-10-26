@@ -1,0 +1,132 @@
+<html>
+  <head>
+    <title>spooky embedded video call demo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="spooky.css" />
+    <!-- this library, bundled and minimized -->
+    <script src="https://unpkg.com/@daily-co/daily-js"></script>
+  </head>
+  <body onload="run()">
+    <script>
+      async function getGifs() {
+        try {
+          // TODO: replace the below with you giphy API key
+          // In production, you'll need to store your key securely, vs. hard coding
+          const token = 'your-giphy-API-key';
+          const giphyEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${token}&q=halloween&rating=pg`;
+          let response = await fetch(giphyEndpoint);
+          gifs = await response.json();
+          return gifs;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      async function playSound(event) {
+        try {
+          const sound = document.querySelector('audio');
+          sound.play();
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      async function setBackground(event) {
+        try {
+          const numPhotos = 3;
+          document.body.style.backgroundImage = `url('/static-demos/spooky-demo/assets/${Math.ceil(
+            Math.random() * numPhotos
+          )}.jpg')`;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      function showEvent(event) {
+        console.log('video call event -->', event);
+      }
+
+      async function run() {
+        getGifs();
+        setInterval(() => {
+          try {
+            let url =
+              gifs.data[Math.floor(Math.random() * 50)].images.original.url;
+            document.getElementById('gifs').src = url;
+          } catch (e) {
+            console.error(e);
+          }
+        }, 20 * 1000);
+        // TODO: Replace the url below with your own Daily room URL for testing, and uncomment the code.
+        // In production, dynamically generate rooms via the Daily API.
+        // room = { url: 'https://your-domain.daily.co/hello' };
+
+        // Create a video call iframe and add it to document.body
+        callFrame = window.DailyIframe.createFrame({
+          iframeStyle: {
+            border: 0,
+            display: 'block',
+            margin: 'auto',
+            width: '50%',
+            height: '100%',
+          },
+        });
+
+        // Most event handlers print information to the console
+        // Except for 'joined-meeting', 'participant-joined', and leave
+        callFrame
+          .on('loading', showEvent)
+          .on('loaded', showEvent)
+          .on('started-camera', showEvent)
+          .on('camera-error', showEvent)
+          .on('joining-meeting', showEvent)
+          .on('joined-meeting', setBackground)
+          .on('participant-joined', playSound)
+          .on('participant-updated', showEvent)
+          .on('participant-left', showEvent)
+          .on('recording-started', showEvent)
+          .on('recording-stopped', showEvent)
+          .on('recording-stats', showEvent)
+          .on('recording-error', showEvent)
+          .on('recording-upload-completed', showEvent)
+          .on('app-message', showEvent)
+          .on('input-event', showEvent)
+          .on('error', showEvent)
+          // add a leave handler to clean things up
+          .on('left-meeting', leave);
+
+        // Join the room
+        await callFrame.join({
+          url: room.url,
+          showLeaveButton: true,
+        });
+
+        function leave(event) {
+          showEvent(event);
+          callFrame.destroy();
+        }
+
+        console.log(
+          ' You are connected to',
+          callFrame.properties.url,
+          '\n',
+          'Use the window.callFrame object to experiment with',
+          '\n',
+          'controlling this call. For example, in the console',
+          '\n',
+          'try',
+          '\n',
+          '    callFrame.participants()',
+          '\n',
+          '    callFrame.setLocalVideo(false)',
+          '\n',
+          '    callFrame.startScreenShare()'
+        );
+      }
+    </script>
+    <audio src="assets/the-addams-family-intro-theme-song.mp3"></audio>
+    <div id="gif-wrapper">
+      <img src="" id="gifs" />
+    </div>
+  </body>
+</html>
