@@ -12,10 +12,10 @@
         try {
           // TODO: replace the below with you giphy API key
           // In production, you'll need to store your key securely, vs. hard coding
-          const token = 'your-giphy-api-key';
+          const token = 'YOUR-GIPHY-API-KEY';
           const giphyEndpoint = `https://api.giphy.com/v1/gifs/search?api_key=${token}&q=halloween&rating=pg`;
-          let response = await fetch(giphyEndpoint);
-          gifs = await response.json();
+          const response = await fetch(giphyEndpoint);
+          const gifs = await response.json();
           return gifs;
         } catch (error) {
           console.error(error);
@@ -46,22 +46,22 @@
       }
 
       async function run() {
-        let gifSearchResults = getGifs();
-        gifSearchResults.then((gifs) => {
-          setInterval(() => {
-            try {
-              let url =
-                gifs.data[Math.floor(Math.random() * 50)].images.original.url;
-              document.getElementById('gifs').src = url;
-            } catch (error) {
-              console.error(error);
-            }
-          }, 20 * 1000);
-        });
+        const gifSearchResults = await getGifs();
+
+        setInterval(() => {
+          try {
+            let url =
+              gifSearchResults.data[Math.floor(Math.random() * 50)].images
+                .original.url;
+            document.getElementById('gifs').src = url;
+          } catch (error) {
+            console.error(error);
+          }
+        }, 20 * 1000);
 
         // TODO: Replace the url below with your own Daily room URL for testing, and uncomment the code.
         // In production, dynamically generate rooms via the Daily API.
-        // room = { url: 'https://your-domain.daily.co/your-room' };
+        room = { url: 'https://your-domain.daily.co/<room-name>' };
 
         // Create a video call iframe and add it to document.body
         callFrame = window.DailyIframe.createFrame({
