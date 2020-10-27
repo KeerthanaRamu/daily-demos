@@ -1,7 +1,7 @@
 # Daily basics demo
 This demo highlights [Daily's prebuilt UI](https://www.daily.co/blog/prebuilt-ui/), how it can be quickly used to embed a video chat widget, and how a separate menu bar for call participants to control their camera, recording, and screensharing could be built around it. The app calls [Daily API methods](https://docs.daily.co/reference#instance-methods) and listens for [Daily events](https://docs.daily.co/reference#events) to enable the menu bar's button controls. 
 
-![Video call takes up most of screen with menu bar around to manage call](./basics__demo_screenshot.png)
+![Video call takes up most of screen with menu bar around to manage call](./image-demo-basics.png)
 
 ## Prerequisites 
 * [Sign up for a Daily account](https://dashboard.daily.co/signup) (if you'd like to swap the demo room links for your own room URLs). 
