@@ -6,7 +6,7 @@ This demo makes use of the `sendAppMessage()` instance method and the correspond
 ## How the demo works 
 When a participant types a message and clicks send, a function fires that adds that message to the participant's local display. The function also broadcasts a message to the other participants using Daily's [`sendAppMessage()`](https://docs.daily.co/reference#%EF%B8%8F-sendappmessage) instance method. `sendAppMessage` triggers the `app-message`event. A callback function on `app-message` updates the other participants' displays and changes the text of "Chat" in their menu bar to red. 
 
-To learn more about how we built this, read our [blog post](). 
+To learn more about how we built this, read our [blog post](https://www.daily.co/blog/three-ways-to-add-chat-to-your-video-calls-with-the-daily-api/). 
 
 ## Running locally 
 1. Make sure you've followed the [instructions at the root of the daily-demos repo](https://github.com/daily-co/daily-demos)
