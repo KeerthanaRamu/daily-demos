@@ -3,14 +3,14 @@
 This demo mirrors Daily's [basics-demo](https://github.com/daily-co/daily-demos/tree/main/static-demos/basics-demo), modified to demonstrate how track subscriptions work. 
 
 This demo makes use of the following:
-
 - `subscribeToTracksAutomatically` constructor property
 - `setSubscribeToTracksAutomatically()` instance method
 - `updateParticipant()` instance method
 - `joined-meeting` and `participant-joined` events
 
-## How the demo works 
+![A meeting owner can subscribe and unsubscribe to a participant's media tracks, turning their camera no and off in this example](./screenshot-track-subs-demo.gif)
 
+## How the demo works 
 Start by adding a meeting url and (owner) token in `createRoom()`. This allows people to join as an owner or a participant (guest). Owners will be displayed to everyone in the meeting. Guests will be displayed for 30 seconds when they join, so they can say "Hi!" to everyone. There are also `subscribe` and `unsubscribe` buttons to allow you to demonstrate how `setSubscribeToTracksAutomatically()` works. 
 
 To learn more about how we built this, read our [blog post](https://daily.co/blog/create-dynamic-meetings-using-track-subscriptions). 
