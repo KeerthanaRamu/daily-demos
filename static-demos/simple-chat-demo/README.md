@@ -9,8 +9,8 @@ When a participant types a message and clicks send, a function fires that adds t
 To learn more about how we built this, read our [blog post](https://www.daily.co/blog/three-ways-to-add-chat-to-your-video-calls-with-the-daily-api/). 
 
 ## Running locally 
-1. Make sure you've followed the [instructions at the root of the daily-demos repo](https://github.com/daily-co/daily-demos)
-2. `cd static-demos` 
+1. `cd daily-demos`
+2. `cd static-demos`
 3. `npm run start` or `npm run dev`
 4. Then open your browser and go to `localhost:<port>/static-demos/simple-chat-demo/index.html`
 

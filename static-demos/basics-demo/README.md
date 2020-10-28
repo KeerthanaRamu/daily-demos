@@ -10,8 +10,8 @@ This demo highlights [Daily's prebuilt UI](https://www.daily.co/blog/prebuilt-ui
 A participant clicks a "create a room" button, triggering a helper function that generates a temporary demo room. Once the room is created, the participant can click a new button "join meeting (as owner)". This button calls the Daily API [`.join` method](https://docs.daily.co/reference#%EF%B8%8F-join), letting the participant into the call. Once the participant has joined the call, the other buttons around the interface trigger their corresponding Daily methods, so the user can leave the meeting, toggle their camera, or start a recording or screenshare. The app listens for [Daily events](https://docs.daily.co/reference#events) in order to turn on the menu bar buttons. 
 
 ## Running locally 
-1. Make sure you've followed the instructions at the root of the daily-demos repo
-2. cd static-demos
+1. `cd daily-demos`
+2. `cd static-demos`
 3. `npm run start` or `npm run dev`
 4. Then open your browser and go to `localhost:<port>/static-demos/basics-demo/basics.html`
 

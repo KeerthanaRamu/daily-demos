@@ -10,8 +10,8 @@ This demo checks a participant's browser, bandwidth, and device status. It also 
 The app calls the [Daily API `supportedBrowser()` method](https://docs.daily.co/reference#-supportedbrowser) and displays a message about the participant's browser accordingly. A participant can then click "continue...test your camera and mic." That generates a test call and runs several tests to confirm the participant's bandwidth and call quality. Once the tests run, the app displays the results to the participant. 
 
 ## Running locally 
-1. Make sure you've followed the instructions at the root of the daily-demos repo
-2. cd static-demos
+1. `cd daily-demos`
+2. `cd static-demos`
 3. `npm run start` or `npm run dev`
 4. Then open your browser and go to `localhost:<port>/static-demos/browser-device-check-demo/browser-device-check-demo.html`
 

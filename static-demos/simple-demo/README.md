@@ -10,8 +10,8 @@ This demo highlights [Daily's prebuilt UI](https://www.daily.co/blog/prebuilt-ui
 A participant clicks a "Click here to start a call" button, triggering a function that generates a temporary demo room URL and creates a DailyIframe. The DailyIframe appears in its default position: the lower right corner. A participant can also monitor [Daily events](https://docs.daily.co/reference#events) on the call by opening up the console. 
 
 ## Running locally 
-1. Make sure you've followed the instructions at the root of the daily-demos repo
-2. cd static-demos
+1. `cd daily-demos`
+2. `cd static-demos`
 3. `npm run start` or `npm run dev`
 4. Then open your browser and go to `localhost:<port>/static-demos/simple-demo/simple.html`
 
