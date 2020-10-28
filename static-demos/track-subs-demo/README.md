@@ -1,6 +1,6 @@
 
-# Daily.co Track Subscriptions demo
-This demo mirrors Daily.co's [basics-demo](https://github.com/daily-co/daily-demos/tree/main/static-demos/basics-demo), modified to demonstrate how track subscriptions work. 
+# Daily Track Subscriptions demo
+This demo mirrors Daily's [basics-demo](https://github.com/daily-co/daily-demos/tree/main/static-demos/basics-demo), modified to demonstrate how track subscriptions work. 
 
 This demo makes use of the following:
 

@@ -75,7 +75,7 @@
         messages = document.getElementById('messages'),
         chatbox = document.getElementById('chatbox');
       /**
-       *  Initializes a Daily.co call and creates the iframe
+       *  Initializes a Daily call and creates the iframe
        *
        */
       async function startCall() {
@@ -177,7 +177,7 @@
 
       /**
        *  Updates participant list based on who is in a call and triggers the chat to send to whoever was not in the meeting
-       *  @param {Object} e is the event information Daily.co returns
+       *  @param {Object} e is the event information Daily returns
        */
       async function updateParticipantList(e) {
         // Get all the participants on the call
@@ -201,7 +201,7 @@
       /**
        *  Toggles display settings when a user leaves a call
        * Calls updateParticipantList passing in the information about the user who left
-       *  @param {Object} e is the event information Daily.co returns
+       *  @param {Object} e is the event information Daily returns
        */
       async function leftCall(e) {
         // Display the Join Call option
