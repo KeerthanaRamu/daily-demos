@@ -95,7 +95,7 @@
 
       async function createRoom() {
         // hardcode links so we can easily have non-owner and owner participants accessing the samed room
-        room = { url: 'INSERT_ROOM' }; 
+        room = { url: 'INSERT_ROOM' };
         token = 'INSERT_TOKEN';
 
         ownerLink = `${room.url}?t=${token}`;
@@ -222,50 +222,40 @@
       }
 
       function participantJoined(e) {
-        
-        // subscribe to latest participant 
-        callFrame.updateParticipant(
-          e.participant.session_id,
-          {
-            setSubscribedTracks: true
-          }
-        );
+        // subscribe to latest participant
+        callFrame.updateParticipant(e.participant.session_id, {
+          setSubscribedTracks: true,
+        });
 
         // unsubscribe from latest after 30 seconds if they aren't an owner
         if (!e.participant.owner) {
-          setTimeout( () => {
-            callFrame.updateParticipant(
-              e.participant.session_id,
-              {
-                setSubscribedTracks: false
-              }
-            );
-          }, 30000)
+          setTimeout(() => {
+            callFrame.updateParticipant(e.participant.session_id, {
+              setSubscribedTracks: false,
+            });
+          }, 30000);
         }
-        
+
         updateParticipantInfoDisplay(e);
       }
 
       function subscribeToOwnerTracks() {
-        const participants = callFrame.participants(); 
+        const participants = callFrame.participants();
         let idsToBeSubscribed = [];
         // add non local owners to to-be-subscribed list
         for (let id in participants) {
-          let p = participants[id]
+          let p = participants[id];
           if (p.owner === true && p.local === false) {
             idsToBeSubscribed.push(participants[id].session_id);
           }
         }
 
-        // subscribe to list 
+        // subscribe to list
         idsToBeSubscribed.forEach((id) => {
-          callFrame.updateParticipant(
-            id,
-            {
-              setSubscribedTracks: true
-            }
-          );
-        })
+          callFrame.updateParticipant(id, {
+            setSubscribedTracks: true,
+          });
+        });
       }
 
       function updateParticipantInfoDisplay(e) {
@@ -283,7 +273,7 @@
               <div>mic ${p.audio ? 'on' : 'off'}</div>
             </div>
           `;
-          } 
+        }
         infoEl.innerHTML =
           '<div><b>meeting participants</b></div>' +
           '<div>' +
@@ -371,15 +361,11 @@
       </div>
 
       <div id="meeting-info-row">
-        <div id="meeting-room-info" class="info">
-          room info
-        </div>
+        <div id="meeting-room-info" class="info">room info</div>
         <div id="meeting-participants-info" class="info">
           meeting participants
         </div>
-        <div id="network-info" class="info">
-          network stats
-        </div>
+        <div id="network-info" class="info">network stats</div>
       </div>
 
       <div id="buttons-row">

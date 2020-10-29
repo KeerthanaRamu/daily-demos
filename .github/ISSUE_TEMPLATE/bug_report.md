@@ -4,7 +4,6 @@ about: Create a report to help us improve
 title: BUG
 labels: bug
 assignees: kimberleejohnson
-
 ---
 
 <!-- If you're experiencing a bug while on a Daily call, before filing a bug report, please try these troubleshooting steps: https://help.daily.co/en/articles/2303117-top-troubleshooting-tips -->
@@ -28,13 +27,13 @@ assignees: kimberleejohnson
 
 <!-- If applicable, add screenshots to help explain your problem. -->
 
-# System information 
+# System information
 
-<!-- Please tell us as much as you can about your setup. Because of how video calls can vary across browsers and devices,  this information will help us troubleshoot your issue faster. --> 
+<!-- Please tell us as much as you can about your setup. Because of how video calls can vary across browsers and devices,  this information will help us troubleshoot your issue faster. -->
 
-* Device:
-* OS, version:
-* Browser, version:
+- Device:
+- OS, version:
+- Browser, version:
 
 # Additional context
 
