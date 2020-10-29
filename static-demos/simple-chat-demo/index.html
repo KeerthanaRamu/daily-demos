@@ -99,14 +99,14 @@
         );
 
         callFrame
-          .on("joined-meeting", joinedCall)
-          .on("participant-joined", updateParticipantList)
-          .on("left-meeting", leftCall)
-          .on("participant-left", updateParticipantList)
-          .on("app-message", updateChat);
+          .on('joined-meeting', joinedCall)
+          .on('participant-joined', updateParticipantList)
+          .on('left-meeting', leftCall)
+          .on('participant-left', updateParticipantList)
+          .on('app-message', updateChat);
         await callFrame.join({
           url: room.url,
-          cssFile: "./styles/callframe-styles.css",
+          cssFile: './styles/callframe-styles.css',
         });
       }
 
@@ -118,13 +118,13 @@
         //let chatWindow = document.getElementById("ui-chat");
         if (!displayChat) {
           displayChat = true;
-          chatWindow.style.display = "flex";
+          chatWindow.style.display = 'flex';
         } else {
           displayChat = false;
-          chatWindow.style.display = "none";
+          chatWindow.style.display = 'none';
         }
-        if ((chatLabel.style.color = "red")) {
-          chatLabel.style.color = "white";
+        if ((chatLabel.style.color = 'red')) {
+          chatLabel.style.color = 'white';
         }
       }
 
@@ -134,7 +134,7 @@
        */
       async function sendMessage() {
         // Local update
-        let newMessage = document.createElement("p");
+        let newMessage = document.createElement('p');
         newMessage.innerHTML = `<span style="font-weight:500">You</span>: ${chatbox.value}`;
         messages.appendChild(newMessage);
 
@@ -142,8 +142,8 @@
         newMessage = {
           message: chatbox.value,
         };
-        callFrame.sendAppMessage(newMessage, "*");
-        chatbox.value = "";
+        callFrame.sendAppMessage(newMessage, '*');
+        chatbox.value = '';
       }
 
       /**
@@ -154,12 +154,12 @@
       async function updateChat(e) {
         let participants = callFrame.participants(),
           userName = participants[e.fromId].user_name,
-          newMessage = document.createElement("p");
+          newMessage = document.createElement('p');
         newMessage.innerHTML = `<span style="font-weight:500">${
-          participants[e.fromId].user_name || "Guest"
+          participants[e.fromId].user_name || 'Guest'
         }</span>: ${e.data.message}`;
         messages.appendChild(newMessage);
-        chatLabel.style.color = "red";
+        chatLabel.style.color = 'red';
       }
 
       /**
@@ -168,9 +168,9 @@
        */
       async function joinedCall() {
         // Toggle functionality to make sure buttons only work on join
-        document.getElementById("ui-local").style.display = "none";
-        document.getElementById("leave-call-label").innerHTML = "Leave call";
-        document.getElementById("leave-call-div").onclick = () => {
+        document.getElementById('ui-local').style.display = 'none';
+        document.getElementById('leave-call-label').innerHTML = 'Leave call';
+        document.getElementById('leave-call-div').onclick = () => {
           callFrame.leave();
         };
       }
@@ -182,18 +182,18 @@
       async function updateParticipantList(e) {
         // Get all the participants on the call
         participants = callFrame.participants();
-        let wrapper = document.getElementById("ui-participant-guests");
-        wrapper.innerHTML = "";
+        let wrapper = document.getElementById('ui-participant-guests');
+        wrapper.innerHTML = '';
 
         // Loop through participants, adding their names to the list
         Object.keys(participants).forEach((p) => {
-          if (p === "local") {
+          if (p === 'local') {
             return; // "You" is already added for the local user
           }
           let participant = participants[p];
           wrapper.innerHTML += `
         <div class="ui-participant-guest">
-            <p>${participant.user_name || "Guest"}</p>
+            <p>${participant.user_name || 'Guest'}</p>
         </div>`;
         });
       }
@@ -205,12 +205,12 @@
        */
       async function leftCall(e) {
         // Display the Join Call option
-        document.getElementById("leave-call-label").innerHTML = "Join call";
-        document.getElementById("leave-call-div").onclick = () => {
+        document.getElementById('leave-call-label').innerHTML = 'Join call';
+        document.getElementById('leave-call-div').onclick = () => {
           callFrame.join();
         };
         // Clear the participants' list locally
-        document.getElementById("ui-participant-local").style.display = "none";
+        document.getElementById('ui-participant-local').style.display = 'none';
         updateParticipantList(e);
       }
     </script>

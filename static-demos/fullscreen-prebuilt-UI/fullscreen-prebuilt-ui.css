@@ -12,10 +12,10 @@ body {
 #start-button {
   margin: auto;
   font-family: 'GraphikRegular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 100%; 
-  color: #1f2d3d; 
-  font-weight: bold; 
-  background-color: #62a60f; 
-  border-radius: 15%; 
-  padding: 2%; 
+  font-size: 100%;
+  color: #1f2d3d;
+  font-weight: bold;
+  background-color: #62a60f;
+  border-radius: 15%;
+  padding: 2%;
 }
