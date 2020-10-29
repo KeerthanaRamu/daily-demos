@@ -32,7 +32,7 @@ const CLICK_ALLOW_TIMEOUT = 'CLICK_ALLOW_TIMEOUT';
 /**
  * PARTICIPANTS_CHANGE action structure:
  * - type: string
- * - participants: Object (from Daily.co callObject.participants())
+ * - participants: Object (from Daily callObject.participants())
  */
 const PARTICIPANTS_CHANGE = 'PARTICIPANTS_CHANGE';
 
