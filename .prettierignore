@@ -1,7 +1,3 @@
-# Skip React demos for now 
-react-demo/ 
-react-demo-electron/ 
-
 # From .gitignore # 
 # Logs
 logs
