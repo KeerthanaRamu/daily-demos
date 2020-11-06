@@ -18,10 +18,10 @@ When the page loads, a Daily video call is created, and a random background imag
 
 To learn more about how we built this, read our [DEV post]().
 
-## Running locally 
+## Running locally
 
-1. Uncomment line 62 in `spooky.html`, and replace the placeholder `url` with your own Daily room URL. 
-2. Replace line 15 with your own Giphy API key. 
+1. Uncomment line 62 in `spooky.html`, and replace the placeholder `url` with your own Daily room URL.
+2. Replace line 15 with your own Giphy API key.
 3. `cd daily-demos`
 4. `cd static-demos`
 5. `npm run start` or `npm run dev`

@@ -1,140 +1,157 @@
-@import url('https://fonts.googleapis.com/css?family=Lato');
-
-/*
-
-top-level definitions. set positions of containers to relative so that
-children will be able to expand to 100% width and height. position the
-local video in the bottom left corner of the grids that we will define
-below.
-
-*/
+:root {
+  --greyLightest: #e6eaef;
+  --white: #ffffff;
+  --grey: #c8d1dc;
+  --fontFamily: GraphikRegular, 'Helvetica Neue', Sans-Serif;
+  /* https://github.com/daily-co/north-star/blob/master/packages/shared/contexts/Theme/theme.ts */
+}
 
 body {
-  border: 1px dashed black;
+  flex: 1;
+  background-color: var(--greyLightest);
+  font-family: var(--fontFamily);
 }
 
-.daily-video-toplevel-div {
-  position: relative;
+button {
+  padding: 8px 16px;
+  align-items: center;
+  border-radius: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-weight: 700;
 }
 
-.daily-video-div {
-  visibility: visible;
-  position: relative;
+#container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  width: 80%;
+  margin: 0 auto;
+  border: 2px solid red;
 }
 
-.daily-video-div.local {
-  grid-area: mid / left / bottom / local-right;
-  margin: 0.25em;
-  z-index: 10;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-.daily-video-element.local {
-  object-position: right bottom; /* flipped, so align "right" */
+input {
+  width: 300px;
+  line-height: 18px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 8px;
 }
 
-/* svg mic muted symbol, for mic muted participant state */
-
-.daily-video-overlay.mic-muted {
-  content: '';
-  position: absolute;
+#instructions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 16;
+  margin-bottom: 8;
   width: 100%;
-  height: 100%;
-  background-image: url(/static-demos/shared-assets/muted-microphone.svg);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 20%;
-  filter: invert(100%);
 }
 
-.daily-video-overlay.mic-muted.local {
-  background-position: bottom 1em left 1em;
-  background-size: 15%;
+#create-demo-room {
+  background-color: var(--white);
+  border-width: 1px;
+  border-color: var(--grey);
 }
 
-/*
-
-grid geometry and video positioning when there is no screen share
-
-*/
-
-.daily-videos-wrapper.remote-screens-0 {
-  display: grid;
-  position: relative;
-  grid-template-rows: [top] 75% [mid] 25% [bottom];
-  grid-template-columns:
-    [left] 25% [local-right] 8.33% [one-third]
-    16.67% [one-half] 16.67% [two-thirds] 1fr [right];
+#call-container {
+  display: flex;
+  width: 100%;
+  /* flex: 1; 
+  width: 67%;
+  height: 67%; ; 
+  margin: 0 auto; 
+  display: flex;  
+  flex-direction: row; 
+  justify-content: space-between; */
 }
 
-.daily-video-div.remote.cam {
-  grid-area: top / left / bottom / right;
+#callframe {
+  /* width: 100%;  */
+  flex: 2;
+  max-width: 500px;
+  max-height: 500px;
+  /* min-width: 450px; */
+  min-height: 450px;
 }
 
-.remote-cams-2 .daily-video-div:nth-child(2) {
-  grid-area: top / left / mid / one-half;
-  margin-right: 0.1em;
-}
-.remote-cams-2 .daily-video-div:nth-child(3) {
-  grid-area: top / one-half / mid / right;
-  margin-left: 0.1em;
-}
-
-.remote-cams-3 .daily-video-div:nth-child(2) {
-  grid-area: top / left / mid / one-third;
-  margin-right: 0.1em;
-}
-.remote-cams-3 .daily-video-div:nth-child(3) {
-  grid-area: top / one-third / mid / two-thirds;
-  margin-left: 0.1em;
-  margin-right: 0.1em;
-}
-.remote-cams-3 .daily-video-div:nth-child(4) {
-  grid-area: top / two-thirds / mid / right;
-  margin-left: 0.1em;
+#call-panel {
+  display: none;
+  flex: 1;
+  flex-direction: column;
+  border: 1px solid #c8d1dc;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.04), 0px 2px 2px rgba(0, 0, 0, 0.04);
+  background: #ffffff;
+  margin-left: 16px;
+  font-size: 12px;
+  /* display: none; 
+  flex-direction: column; 
+  align-items: flex-end;  
+  justify-content: space-between;  */
 }
 
-/* position local screen bottom right */
-
-.daily-video-div.local.screen {
-  grid-area: mid / -2 / bottom / -1;
-  margin: 0.25em;
-  z-index: 10;
-}
-.daily-video-element.local.screen {
-  object-position: right bottom;
+#call-panel h2,
+h3,
+li {
+  font-size: 12px;
 }
 
-/*
-
-grid geometry and video positioning when there is a single remote
-screen share. this demo layout doesn't support dual screen shares.
-
-*/
-
-.daily-videos-wrapper.remote-screens-1 {
-  display: grid;
-  position: relative;
-  grid-template-rows: [top] 75% [mid] 25% [bottom];
-  grid-template-columns: [left] 1fr [local-right] 1fr 1fr 1fr;
+#call-panel h2 {
+  margin: 0 0 8px 0;
 }
 
-.daily-video-div.remote.screen {
-  grid-area: top / left / bottom / right;
+#call-panel h3 {
+  margin: 0px;
 }
 
-.remote-screens-1 .daily-video-div {
-  margin: 0.2em;
-}
-.remote-screens-1 video.cam {
-  object-position: right bottom;
+#call-panel ul {
+  padding-left: 16px;
 }
 
-.remote-screens-1 > .remote.cam {
-  grid-area: mid / 4 / bottom / 5;
+#logo {
+  width: 90px;
 }
-.remote-screens-1 > .remote.cam ~ .remote.cam {
-  grid-area: mid / 3 / bottom / 4;
+
+.info {
+  box-shadow: 1px 0 0 #c8d1dc, 0 1px 0 #c8d1dc;
+  flex-shrink: 0;
+  padding: 16px;
+  /* border: 1px solid var(--grey); 
+  background-color: var(--white);
+  border-radius: 4px; 
+  display: flex; 
+  flex-direction: column; 
+  height: 29%; 
+  position: relative; 
+  width: 87%; 
+  padding: 3%; 
+  overflow: hidden;  */
 }
-.remote-screens-1 > .remote.cam ~ .remote.cam ~ .remote.cam {
-  grid-area: mid / 2 / bottom / 3;
+
+#meeting-room-info {
+  /* display: flex; 
+  justify-content: space-around; */
+  border: 1px solid #c8d1dc;
+  border-radius: 4px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.04), 0px 2px 2px rgba(0, 0, 0, 0.04);
+}
+
+#copy-link {
+  display: none;
+  margin-left: 100px;
+}
+
+#input-and-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
