@@ -3,7 +3,6 @@ const newRoomEndpoint =
   tokenEndpoint =
     'https://dwdd5s2bp7.execute-api.us-west-2.amazonaws.com/default/dailyWWWApiDemoToken';
 
-// https://github.com/daily-co/rn-daily-js-playground/pull/42/commits/4ae537d3a682e1b8357fae3847039ec2d057bc2c
 async function createMtgRoom() {
   try {
     let response = await fetch(newRoomEndpoint),
