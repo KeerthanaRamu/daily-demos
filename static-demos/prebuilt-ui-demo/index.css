@@ -4,17 +4,18 @@
   --grey: #c8d1dc;
   --darkblue: #1f2d3d;
   --darkblueborder: #2b3f56;
+  --green: #72cc18;
   --fontFamily: GraphikRegular, 'Helvetica Neue', Sans-Serif;
 }
 
 body {
-  flex: 1;
   background-color: var(--greyLightest);
-  font-family: var(--fontFamily);
-  background-size: cover;
 }
 
 #container {
+  flex: 1;
+  font-family: var(--fontFamily);
+  background-size: cover;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -104,7 +105,6 @@ iframe {
 }
 
 #call-panel {
-  display: none;
   flex: 1;
   flex-direction: column;
   border: 1px solid #c8d1dc;
@@ -148,6 +148,18 @@ li {
   border-top: 1px solid var(--grey);
   flex-shrink: 0;
   padding: 16px;
+}
+
+.turn-green {
+  background-color: var(--green);
+}
+
+.show {
+  display: flex;
+}
+
+.hide {
+  display: none;
 }
 
 /* Media queries */
