@@ -11,7 +11,17 @@
 // Assigns an event listener to the input field to change the join button color
 async function setup() {
   callFrame = await window.DailyIframe.createFrame(
-    document.getElementById('callframe')
+    document.getElementById('callframe'),
+    {
+      iframeStyle: {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        width: '100%',
+        height: '100%',
+        border: '0',
+      },
+    }
   );
 
   callFrame
@@ -45,8 +55,10 @@ async function setup() {
 // Assigns the demo room URL to the input value
 // Changes the color of the 'join' button once a room has been created
 async function createDemoRoom() {
+  const createButton = document.getElementById('create-button');
   const joinButton = document.getElementById('join-call');
   const roomURL = document.getElementById('room-url');
+  createButton.innerHTML = 'Creating room...';
   room = await createMtgRoom();
   ownerLink = await createMtgLinkWithToken(room, {
     is_owner: true,
@@ -55,6 +67,8 @@ async function createDemoRoom() {
 
   roomURL.value = ownerLink;
   joinButton.classList.toggle('turn-green');
+  createButton.innerHTML = 'Copy room link';
+  createButton.setAttribute('onclick', 'copyLink()');
 }
 
 // Joins Daily call
@@ -82,21 +96,18 @@ function showEvent(e) {
 function showCallDisplay() {
   const callPanel = document.getElementById('call-panel'),
     joinButton = document.getElementById('join-call'),
-    instructionText = document.getElementById('instruction-text'),
-    topButton = document.getElementById('top-button');
+    instructionText = document.getElementById('instruction-text');
 
   showEvent();
+  setInterval(updateNetworkInfoDisplay, 5000);
+  displayDemoRoomTimer();
 
   callPanel.classList.remove('hide');
   callPanel.classList.add('show');
 
   instructionText.innerHTML = 'Copy and share the URL to invite others';
-  topButton.setAttribute('onclick', 'copyLink()');
-  topButton.innerHTML = 'Copy room link';
-  joinButton.classList.toggle('hide');
-
-  setInterval(updateNetworkInfoDisplay, 5000);
-  displayDemoRoomTimer();
+  joinButton.classList.remove('button');
+  joinButton.classList.add('hide');
 }
 
 // 'left-meeting'
@@ -108,7 +119,7 @@ function hideCallDisplay() {
   const expiresCountdown = document.getElementById('expires-countdown'),
     callPanel = document.getElementById('call-panel'),
     instructionText = document.getElementById('instruction-text'),
-    topButton = document.getElementById('top-button'),
+    topButton = document.getElementById('create-button'),
     joinButton = document.getElementById('join-call');
 
   showEvent();
@@ -120,7 +131,8 @@ function hideCallDisplay() {
 
   instructionText.innerHTML =
     'To get started, enter an existing room URL or create a temporary demo room';
-  joinButton.classList.toggle('hide');
+  joinButton.classList.remove('hide');
+  joinButton.classList.add('button');
   topButton.innerHTML = 'Create demo room';
   topButton.setAttribute('onclick', 'createDemoRoom()');
 }
@@ -220,6 +232,7 @@ async function updateNetworkInfoDisplay() {
         ${Math.floor(statsInfo.stats.worstVideoRecvPacketLoss * 100)}%
       </li>
   `;
+  document.getElementById('loading-network').classList.toggle('hide');
 }
 
 // Loops through callFrame.participants() to list participants on the call

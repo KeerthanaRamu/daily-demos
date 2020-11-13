@@ -8,9 +8,9 @@
     <script src="./index.js"></script>
     <script src="../shared-assets/create-demo-room.js"></script>
   </head>
-  <body onload="setup()">
+  <body onload="setup()" class="main">
     <div id="container">
-      <header>
+      <header class="header">
         <img src="assets/logo@2x.png" id="logo" />
         <div>
           <a href="https://github.com/daily-co/daily-demos"
@@ -18,7 +18,7 @@
           /></a>
         </div>
       </header>
-      <h1>Daily Prebuilt UI demo</h1>
+      <h1 class="title">Daily Prebuilt UI demo</h1>
       <div id="instructions">
         <p id="instruction-text">
           To get started, enter an existing room URL or create a temporary demo
@@ -27,76 +27,71 @@
         <div id="input-and-buttons">
           <label for="room-url"></label>
           <input type="text" id="room-url" placeholder="Room URL" />
-          <button id="top-button" onclick="createDemoRoom()">
+          <button class="button" id="create-button" onclick="createDemoRoom()">
             Create demo room
           </button>
-          <button id="join-call" onclick="joinCall()">Join call</button>
+          <button class="button" id="join-call" onclick="joinCall()">
+            Join call
+          </button>
         </div>
         <p id="expires-countdown"></p>
       </div>
       <div id="call-container">
         <div id="callframe"></div>
         <div id="call-panel" class="hide">
-          <h2>Call overview</h2>
+          <h2 class="call-panel--title">Call overview</h2>
           <div class="info">
-            <h3>Meeting participants</h3>
+            <h3 class="call-panel--subtitle">Meeting participants</h3>
             <ul id="meeting-participants-info"></ul>
           </div>
           <div class="info">
-            <h3>Network stats</h3>
+            <h3 class="call-panel--subtitle">Network stats</h3>
+            <p id="loading-network">Loading your network stats...</p>
             <ul id="network-info"></ul>
           </div>
           <div class="info">
-            <h3>Example custom controls</h3>
+            <h3 class="call-panel--subtitle">Example custom controls</h3>
             <p>
               You can also create your own meeting controls outside the
               callframe using
               <a href="https://github.com/daily-co/daily-js">daily-js</a>.
             </p>
-            <h4>Participant controls</h4>
-            <button
-              class="participant-control"
-              id="camera-button"
-              onclick="toggleCamera()"
-            >
+            <h4 class="call-panel--control-type">Participant controls</h4>
+            <button class="button" id="camera-button" onclick="toggleCamera()">
               Toggle camera
             </button>
-            <button
-              class="participant-control"
-              id="camera-button"
-              onclick="toggleMic()"
-            >
+            <button class="button" id="mic-button" onclick="toggleMic()">
               Toggle mic
             </button>
             <button
-              class="participant-control"
+              class="button"
               id="share-button"
               onclick="toggleScreenshare()"
             >
               Share screen
             </button>
             <button
-              class="participant-control"
+              class="button"
               id="recording-button"
               onclick="toggleRecording()"
             >
               Start recording
             </button>
             <button
-              class="participant-control"
+              class="button"
               id="fullscreen-button"
               onclick="callFrame.requestFullscreen()"
             >
               Expand fullscreen
             </button>
             <button
-              class="participant-control"
+              class="button"
               id="surprise-button"
               onclick="updateBackground()"
             >
               Surprise me
             </button>
-            <h4>Track subscriptions</h4>
+            <h4 class="call-panel--control-type">Track subscriptions</h4>
             <p>
               You can
               <a
@@ -105,7 +100,7 @@
               >
               (mic, cam, screenshare) of other participants.
               <button
-                class="participant-control"
+                class="button"
                 id="tracks-button"
                 onClick="unsubscribeTracks()"
               >
