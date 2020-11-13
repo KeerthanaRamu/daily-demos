@@ -103,12 +103,13 @@
 
 #call-container {
   display: flex;
+  width: 100%;
 }
 
 #callframe {
   flex: 2;
   position: relative;
-  padding-bottom: 60%;
+  padding-bottom: 40%;
 }
 
 #call-panel {
