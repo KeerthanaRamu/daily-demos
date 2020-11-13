@@ -1,28 +1,43 @@
-# Daily basics demo
+# Daily Prebuilt UI demo
 
-This demo highlights [Daily's prebuilt UI](https://www.daily.co/blog/prebuilt-ui/), how it can be quickly used to embed a video chat widget, and how a separate menu bar for call participants to control their camera, recording, and screensharing could be built around it. The app calls [Daily API methods](https://docs.daily.co/reference#instance-methods) and listens for [Daily events](https://docs.daily.co/reference#events) to enable the menu bar's button controls.
+This demo highlights [Daily's prebuilt UI](https://www.daily.co/blog/prebuilt-ui/), and how it can be used to embed a video chat widget in a website or app. The demo also illustrates how to use [daily-js methods](https://docs.daily.co/reference#instance-methods) and [events](https://docs.daily.co/reference#events) to build custom interfaces outside of the callframe that control the call.
 
-![Video call takes up most of screen with menu bar around to manage call](./screenshot-basics-demo.png)
+The demo's custom controls use these Daily methods:
+
+- [`.setLocalVideo()`](https://docs.daily.co/reference#%EF%B8%8F-setlocalvideo)
+- [`.setLocalAudio()`](https://docs.daily.co/reference#%EF%B8%8F-setlocalaudio)
+- [`.startScreenShare()`](https://docs.daily.co/reference#%EF%B8%8F-startscreenshare)
+- [`.stopScreenShare()`](https://docs.daily.co/reference#%EF%B8%8F-stopscreenshare)
+- [`.startRecording()`](https://docs.daily.co/reference#%EF%B8%8F-startrecording)
+- [`.stopRecording()`](https://docs.daily.co/reference#%EF%B8%8F-stoprecording)
+- [`.requestFullscreen()`](https://docs.daily.co/reference#requestfullscreen)
+- [`.participants()`](https://docs.daily.co/reference#%EF%B8%8F-participants)
+- [`.getNetworkStats()`](https://docs.daily.co/reference#%EF%B8%8F-getnetworkstats)
+- [`.setSubscribeToTracksAutomatically()`](https://docs.daily.co/reference#%EF%B8%8F-setsubscribetotracksautomatically)
+
+![Video call takes up the left side of the screen, call controls on the right](./assets/prebuilt-ui-demo.gif)
 
 ## Prerequisites
 
-- [Sign up for a Daily account](https://dashboard.daily.co/signup) to swap the placeholder room URLs for your own.
+- [Sign up for a Daily account](https://dashboard.daily.co/signup) if you'd like to insert your own URL into the Room URL input field.
 
 ## How the demo works
 
-A participant clicks a "create a room" button, triggering a helper function that generates a temporary demo room. Once the room is created, the participant can click a new button "join meeting (as owner)". This button calls the Daily API [`.join` method](https://docs.daily.co/reference#%EF%B8%8F-join), letting the participant into the call. Once the participant has joined the call, the other buttons around the interface trigger their corresponding Daily methods, so the user can leave the meeting, toggle their camera, or start a recording or screenshare. The app listens for [Daily events](https://docs.daily.co/reference#events) in order to turn on the menu bar buttons.
+The participant either clicks the "Create demo room" button, triggering a helper function that generates a temporary demo room, or enters their own Daily room URL into the input field.
+
+Once a room has been created, the participant can click "Join call." This button calls the Daily [`.join()`](https://docs.daily.co/reference#%EF%B8%8F-join) method, letting the participant into the call. The app listens for this `meeting-joined` event, and displays the control panel when the event fires. Each button in the panel triggers a corresponding Daily method when clicked.
 
 ## Running locally
 
 1. `cd daily-demos`
 2. `cd static-demos`
 3. `npm run start` or `npm run dev`
-4. Then open your browser and go to `localhost:<port>/static-demos/basics-demo/basics.html`
+4. Then open your browser and go to `localhost:<port>/static-demos/prebuilt-ui-demo/index.html`
 
 ## Contributing and feedback
 
-Let us know how experimenting with this demo goes! Feel free to [open an Issue](https://github.com/daily-co/daily-demos/issues), or reach us any time at `help@daily.co`.
+Let us know how experimenting with this demo goes! Reach us any time at `help@daily.co`.
 
 ## What's next
 
-To get to know even more Daily API methods and events, explore our other demos, like [how to add your own chat interface](https://github.com/daily-co/daily-demos/tree/main/static-demos/simple-chat-demo).
+This demo shows off the [Daily prebuilt UI](https://www.daily.co/blog/prebuilt-ui/), but it's also possible to build an entirely custom video chat interface using [the Daily call object](https://docs.daily.co/docs/build-a-custom-video-chat-interface). Have a look at our [React tutorial](https://www.daily.co/blog/building-a-custom-video-chat-app-with-react/) to get started.
