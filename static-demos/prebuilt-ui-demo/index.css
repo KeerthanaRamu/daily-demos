@@ -53,6 +53,7 @@
   background-color: var(--white);
   border-width: 1px;
   border-color: var(--grey);
+  cursor: pointer;
 }
 
 #join-call {
