@@ -2,9 +2,8 @@
   --greyLightest: #e6eaef;
   --white: #ffffff;
   --grey: #c8d1dc;
-  --darkblue: #1f2d3d;
-  --darkblueborder: #2b3f56;
   --green: #62a60f;
+  --black: #00000;
   --fontFamily: GraphikRegular, 'Helvetica Neue', Sans-Serif;
 }
 
@@ -13,7 +12,6 @@
   flex-direction: column;
   justify-content: center;
   background-color: var(--greyLightest);
-  color: #e6eaef;
   font-family: var(--fontFamily);
 }
 
