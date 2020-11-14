@@ -8,7 +8,7 @@
   --fontFamily: GraphikRegular, 'Helvetica Neue', Sans-Serif;
 }
 
-body {
+.main {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,7 +17,7 @@ body {
   font-family: var(--fontFamily);
 }
 
-header {
+.header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,37 +25,33 @@ header {
   margin-bottom: 1rem;
 }
 
-#logo {
+.logo {
   width: 90px;
 }
 
-h1 {
+.title {
   margin-bottom: 0;
   text-align: center;
   color: var(--darkblue);
 }
 
-#header-and-button {
+.header-and-button {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-button {
+.start-button {
   padding: 8px 16px;
-  margin-top: 8px;
+  margin-top: 50px;
   margin-bottom: 8px;
   max-width: 800px;
   font-weight: 700;
   text-align: center;
+  justify-content: center;
   border-radius: 8px;
   border-width: 1px;
   border-color: var(--grey);
-}
-
-#start-button {
-  justify-content: center;
   background-color: var(--green);
   color: var(--white);
-  margin-top: 50px;
 }
