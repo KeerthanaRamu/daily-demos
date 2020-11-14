@@ -9,9 +9,13 @@
     <script src="../shared-assets/create-demo-room.js"></script>
   </head>
   <body onload="setup()" class="main">
-    <div id="container">
+    <div class="container">
       <header class="header">
-        <img src="assets/logo@2x.png" id="logo" alt="Daily logo reads Daily" />
+        <img
+          src="assets/logo@2x.png"
+          class="logo"
+          alt="Daily logo reads Daily"
+        />
         <div>
           <a href="https://github.com/daily-co/daily-demos"
             ><img src="assets/github@icons8.png" alt="GitHub logo Octocat"
@@ -19,26 +23,31 @@
         </div>
       </header>
       <h1 class="title">Daily Prebuilt UI demo</h1>
-      <div id="instructions">
+      <div class="instructions">
         <p id="instruction-text">
           To get started, enter an existing room URL or create a temporary demo
           room
         </p>
-        <div id="input-and-buttons">
+        <div class="input-and-buttons">
           <label for="room-url"></label>
-          <input type="text" id="room-url" placeholder="Room URL" />
+          <input
+            type="text"
+            class="room-url"
+            id="room-url"
+            placeholder="Room URL"
+          />
           <button class="button" id="create-button" onclick="createDemoRoom()">
             Create demo room
           </button>
-          <button class="button" id="join-call" onclick="joinCall()">
+          <button class="join-call button" onclick="joinCall()">
             Join call
           </button>
         </div>
-        <p id="expires-countdown"></p>
+        <p class="expires-countdown"></p>
       </div>
-      <div id="call-container">
-        <div id="callframe"></div>
-        <div id="call-panel" class="hide">
+      <div class="call-container">
+        <div class="callframe" id="callframe"></div>
+        <div class="call-panel hide">
           <h2 class="call-panel--title">Call overview</h2>
           <div class="info">
             <h3 class="call-panel--subtitle">Meeting participants</h3>
@@ -57,35 +66,43 @@
               <a href="https://github.com/daily-co/daily-js">daily-js</a>.
             </p>
             <h4 class="call-panel--control-type">Participant controls</h4>
-            <button class="button" id="camera-button" onclick="toggleCamera()">
+            <button
+              class="call-panel--button button"
+              id="camera-button"
+              onclick="toggleCamera()"
+            >
               Toggle camera
             </button>
-            <button class="button" id="mic-button" onclick="toggleMic()">
+            <button
+              class="call-panel--button button"
+              id="mic-button"
+              onclick="toggleMic()"
+            >
               Toggle mic
             </button>
             <button
-              class="button"
+              class="call-panel--button button"
               id="share-button"
               onclick="toggleScreenshare()"
             >
               Share screen
             </button>
             <button
-              class="button"
+              class="call-panel--button button"
               id="recording-button"
               onclick="toggleRecording()"
             >
               Start recording
             </button>
             <button
-              class="button"
+              class="call-panel--button button"
               id="fullscreen-button"
               onclick="callFrame.requestFullscreen()"
             >
               Expand fullscreen
             </button>
             <button
-              class="button"
+              class="call-panel--button button"
               id="surprise-button"
               onclick="updateBackground()"
             >
@@ -100,7 +117,7 @@
               >
               (mic, cam, screenshare) of other participants.
               <button
-                class="button"
+                class="call-panel--button button"
                 id="tracks-button"
                 onClick="unsubscribeTracks()"
               >

@@ -43,7 +43,8 @@ async function setup() {
     .on('left-meeting', hideCallDisplay);
 
   let roomURL = document.getElementById('room-url');
-  const joinButton = document.getElementById('join-call');
+  const joinButton = document.getElementsByClassName('join-call')[0];
+  console.log(joinButton);
   roomURL.addEventListener('input', () => {
     if (roomURL.value) {
       joinButton.classList.toggle('turn-green');
@@ -56,7 +57,7 @@ async function setup() {
 // Changes the color of the 'join' button once a room has been created
 async function createDemoRoom() {
   const createButton = document.getElementById('create-button');
-  const joinButton = document.getElementById('join-call');
+  const joinButton = document.getElementsByClassName('join-call')[0];
   const roomURL = document.getElementById('room-url');
   createButton.innerHTML = 'Creating room...';
   room = await createMtgRoom();
@@ -94,8 +95,8 @@ function showEvent(e) {
 // Hides the join call button
 // Calls functions to update network stats and display demo room
 function showCallDisplay() {
-  const callPanel = document.getElementById('call-panel'),
-    joinButton = document.getElementById('join-call'),
+  const callPanel = document.getElementsByClassName('call-panel')[0],
+    joinButton = document.getElementsByClassName('join-call')[0],
     instructionText = document.getElementById('instruction-text');
 
   showEvent();
@@ -116,11 +117,13 @@ function showCallDisplay() {
 // Clears input and button values
 // Restores join call and create demo buttons
 function hideCallDisplay() {
-  const expiresCountdown = document.getElementById('expires-countdown'),
-    callPanel = document.getElementById('call-panel'),
+  const expiresCountdown = document.getElementsByClassName(
+      'expires-countdown'
+    )[0],
+    callPanel = document.getElementsByClassName('call-panel')[0],
     instructionText = document.getElementById('instruction-text'),
     topButton = document.getElementById('create-button'),
-    joinButton = document.getElementById('join-call');
+    joinButton = document.getElementsByClassName('join-call')[0];
 
   showEvent();
 
@@ -258,7 +261,7 @@ function displayDemoRoomTimer() {
     window.expiresUpdate = setInterval(() => {
       let exp = room && room.config && room.config.exp;
       if (exp) {
-        document.getElementById('expires-countdown').innerHTML = `
+        document.getElementsByClassName('expires-countdown')[0].innerHTML = `
            <em>⏳ Heads up! Your demo room expires in
              ${Math.floor((new Date(exp * 1000) - Date.now()) / 1000)}
            seconds ⏳</em>
