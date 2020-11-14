@@ -51,4 +51,5 @@
   border-color: var(--grey);
   background-color: var(--green);
   color: var(--white);
+  cursor: pointer;
 }

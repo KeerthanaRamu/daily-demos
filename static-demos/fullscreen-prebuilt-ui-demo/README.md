@@ -2,7 +2,7 @@
 
 This demo highlights [Daily's prebuilt UI](https://www.daily.co/blog/prebuilt-ui/), and how it can be expanded fullscreen in a website or app.
 
-![Video call takes up most of screen with menu bar around to manage call](./screenshot-fullscreen-prebuilt-UI.gif)
+![Video call takes up most of screen with menu bar around to manage call](./assets/fullscreen-prebuilt-ui.gif)
 
 ## Prerequisites
 
