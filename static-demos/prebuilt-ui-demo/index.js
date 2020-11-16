@@ -70,6 +70,8 @@ async function createDemoRoom() {
   joinButton.classList.toggle('turn-green');
   createButton.innerHTML = 'Copy room link';
   createButton.setAttribute('onclick', 'copyLink()');
+
+  displayDemoRoomTimer();
 }
 
 // Joins Daily call
@@ -101,7 +103,6 @@ function showCallDisplay() {
 
   showEvent();
   setInterval(updateNetworkInfoDisplay, 5000);
-  displayDemoRoomTimer();
 
   callPanel.classList.remove('hide');
   callPanel.classList.add('show');
