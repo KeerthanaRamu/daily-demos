@@ -68,7 +68,6 @@
   color: var(--white);
   background-color: var(--dark-blue);
   border-color: var(--dark-blue-border);
-  font-size: 12px;
   box-shadow: 0 0 0 0 transparent;
 }
 
@@ -104,7 +103,9 @@
 .callframe {
   flex: 2;
   position: relative;
-  padding-bottom: 40%;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
 }
 
 .call-panel {
@@ -154,6 +155,14 @@
   padding: 16px;
 }
 
+.network-info {
+  margin: 0;
+}
+
+.loading-network {
+  margin: 0;
+}
+
 .turn-green {
   background-color: var(--green);
 }
@@ -168,9 +177,7 @@
   .call-container {
     flex-direction: column;
   }
-  .callframe {
-    padding-bottom: 60%;
-  }
+
   .call-panel {
     margin-left: 0;
     margin-top: 16px;

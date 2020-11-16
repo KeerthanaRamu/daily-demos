@@ -18,7 +18,7 @@ async function setup() {
         top: '0',
         left: '0',
         width: '100%',
-        height: '100%',
+        height: '90%',
         border: '0',
       },
     }
@@ -216,7 +216,7 @@ function subscribeTracks() {
 
 // Populates 'network info' with information info from daily-js
 async function updateNetworkInfoDisplay() {
-  let networkInfo = document.getElementById('network-info'),
+  let networkInfo = document.getElementsByClassName('network-info')[0],
     statsInfo = await callFrame.getNetworkStats();
   networkInfo.innerHTML = `
       <li>
@@ -235,7 +235,7 @@ async function updateNetworkInfoDisplay() {
         ${Math.floor(statsInfo.stats.worstVideoRecvPacketLoss * 100)}%
       </li>
   `;
-  document.getElementById('loading-network').classList.toggle('hide');
+  document.getElementsByClassName('loading-network')[0].classList.add('hide');
 }
 
 // Loops through callFrame.participants() to list participants on the call
