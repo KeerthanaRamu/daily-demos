@@ -53,3 +53,7 @@
   color: var(--white);
   cursor: pointer;
 }
+
+.hide {
+  visibility: hidden;
+}

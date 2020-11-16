@@ -52,14 +52,14 @@ async function run() {
 
   // Leave handler
   function leave(e) {
+    const startButton = document.getElementsByClassName('start-button')[0];
     showEvent(e);
     callFrame.destroy();
-    document.getElementsByClassName('start-button')[0].style.display =
-      'initial';
+    startButton.classList.remove('hide');
   }
 
   // Once a call starts running, hide the start button and prompts
-  document.getElementsByClassName('start-button')[0].style.display = 'none';
+  document.getElementsByClassName('start-button')[0].classList.add('hide');
 
   // Log information about the call to the console
   console.log(
