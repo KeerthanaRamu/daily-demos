@@ -1,10 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
+// import CallObjectContext from '../../CallObjectContext';
 import './Tile.css';
 
 /**
  * Props
  * - videoTrack: MediaStreamTrack?
  * - audioTrack: MediaStreamTrack?
+ * - participantName: Does the participant have a .user_name?
  * - isLocalPerson: boolean
  * - isLarge: boolean
  * - isLoading: boolean
@@ -54,12 +56,23 @@ export default function Tile(props) {
     return classNames;
   }
 
+  function getParticipantName() {
+    return (
+      props.participantName && (
+        <div className="participant-name">{props.participantName}</div>
+      )
+    );
+  }
+
   return (
-    <div className={getClassNames()} onClick={props.onClick}>
-      <div className="background" />
-      {getLoadingComponent()}
-      {getVideoComponent()}
-      {getAudioComponent()}
+    <div>
+      <div className={getClassNames()} onClick={props.onClick}>
+        <div className="background" />
+        {getLoadingComponent()}
+        {getVideoComponent()}
+        {getAudioComponent()}
+        {getParticipantName()}
+      </div>
     </div>
   );
 }

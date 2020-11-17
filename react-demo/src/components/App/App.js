@@ -92,7 +92,6 @@ export default function App() {
     if (pageUrl === window.location.href) return;
     window.history.replaceState(null, null, pageUrl);
   }, [roomUrl]);
-
   /**
    * Uncomment to attach call object to window for debugging purposes.
    */

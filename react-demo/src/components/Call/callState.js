@@ -14,6 +14,7 @@ const initialCallState = {
       isLoading: true,
       audioTrack: null,
       videoTrack: null,
+      participantName: '',
     },
   },
   clickAllowTimeoutFired: false,
@@ -91,6 +92,7 @@ function getCallItems(participants, prevCallItems) {
       isLoading: !hasLoaded && missingTracks,
       audioTrack: participant.audioTrack,
       videoTrack: participant.videoTrack,
+      participantName: participant.user_name ? participant.user_name : 'Guest',
     };
     if (participant.screenVideoTrack || participant.screenAudioTrack) {
       callItems[id + '-screen'] = {

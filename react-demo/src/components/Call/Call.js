@@ -145,6 +145,7 @@ export default function Call() {
           isLocalPerson={isLocal(id)}
           isLarge={isLarge}
           isLoading={callItem.isLoading}
+          participantName={callItem.participantName}
           onClick={
             isLocal(id)
               ? null
