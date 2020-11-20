@@ -5,6 +5,7 @@ import TrayButton, {
   TYPE_MUTE_MIC,
   TYPE_SCREEN,
   TYPE_LEAVE,
+  TYPE_CHAT,
 } from '../TrayButton/TrayButton';
 import CallObjectContext from '../../CallObjectContext';
 import { logDailyEvent } from '../../logUtils';
@@ -112,6 +113,12 @@ export default function Tray(props) {
           onClick={toggleSharingScreen}
         />
       )}
+      <TrayButton
+        type={TYPE_CHAT}
+        disabled={props.disabled}
+        // highlighted={}
+        // onClick={}
+      />
       <TrayButton
         type={TYPE_LEAVE}
         disabled={props.disabled}
