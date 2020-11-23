@@ -1,15 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Chat.css';
 
-export default function Chat(props) {
-  return (
-    <div className="chat">
-      <input
-        className="chat-input"
-        type="text"
-        placeholder="Type a message here.."
-      ></input>
-      <button className="send-chat-button">SEND</button>
-    </div>
-  );
+export default class Chat extends Component {
+  sendChatMessage = () => {
+    // Update the local display, making sure all previous messages display
+    // Also broadcasts message
+  };
+
+  render() {
+    return (
+      <div className="chat">
+        <input
+          id="chatInput"
+          className="chat-input"
+          type="text"
+          placeholder="Type your message here.."
+        ></input>
+        <button onClick={this.sendChatMessage} className="send-chat-button">
+          SEND
+        </button>
+      </div>
+    );
+  }
 }
