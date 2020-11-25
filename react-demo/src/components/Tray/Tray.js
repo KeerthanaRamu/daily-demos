@@ -129,7 +129,12 @@ export default function Tray(props) {
         onClick={toggleChat}
       />
       {/* Chat rendered depending on boolean state */}
-      {displayChat && <Chat />}
+      {displayChat && (
+        <Chat
+          chatHistory={props.chatHistory}
+          setChatHistory={props.setChatHistory}
+        />
+      )}
       <TrayButton
         type={TYPE_LEAVE}
         disabled={props.disabled}

@@ -21,6 +21,8 @@ export default function App() {
   const [roomUrl, setRoomUrl] = useState(null);
   const [callObject, setCallObject] = useState(null);
 
+  const [chatHistory, setChatHistory] = useState([]);
+
   /**
    * Creates a new call room.
    */
@@ -151,7 +153,8 @@ export default function App() {
   }, [callObject]);
 
   /**
-   * Listen for app messages from other call participants.
+   * Update chat state based on a message received to all participants.
+   *
    */
   useEffect(() => {
     if (!callObject) {
@@ -159,10 +162,18 @@ export default function App() {
     }
 
     function handleAppMessage(event) {
-      if (event) {
-        logDailyEvent(event);
-        console.log(`received app message from ${event.fromId}: `, event.data);
-      }
+      console.log('debug');
+      const participants = callObject.participants();
+      const name = participants[event.fromId].user_name
+        ? participants[event.fromId].user_name
+        : 'Guest';
+      setChatHistory([
+        ...chatHistory,
+        {
+          sender: name,
+          message: event.data.message,
+        },
+      ]);
     }
 
     callObject.on('app-message', handleAppMessage);
@@ -170,8 +181,11 @@ export default function App() {
     return function cleanup() {
       callObject.off('app-message', handleAppMessage);
     };
-  }, [callObject]);
+  }, [callObject, chatHistory]);
 
+  useEffect(() => {
+    console.log(...chatHistory);
+  }, [chatHistory]);
   /**
    * Show the call UI if we're either joining, already joined, or are showing
    * an error.
@@ -216,7 +230,9 @@ export default function App() {
           <Call roomUrl={roomUrl} />
           <Tray
             disabled={!enableCallButtons}
+            chatHistory={chatHistory}
             onClickLeaveCall={startLeavingCall}
+            setChatHistory={setChatHistory}
           />
         </CallObjectContext.Provider>
       ) : (
