@@ -28,8 +28,8 @@ export default function Chat(props) {
   return (
     <div className="chat">
       {props.chatHistory.map((entry, index) => (
-        <div key={`entry-${index}`}>
-          {entry.sender}: {entry.message}
+        <div key={`entry-${index}`} className="messageList">
+          <b>{entry.sender}</b>: {entry.message}
         </div>
       ))}
       <label htmlFor="chatInput">
@@ -43,7 +43,7 @@ export default function Chat(props) {
         ></input>
       </label>
       <button onClick={handleSubmit} className="send-chat-button">
-        SEND
+        Send
       </button>
     </div>
   );

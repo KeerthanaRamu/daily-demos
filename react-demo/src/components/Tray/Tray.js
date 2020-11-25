@@ -123,7 +123,6 @@ export default function Tray(props) {
       )}
       <TrayButton
         type={TYPE_CHAT}
-        newButtonGroup={true}
         disabled={props.disabled}
         // highlighted={}
         onClick={toggleChat}
