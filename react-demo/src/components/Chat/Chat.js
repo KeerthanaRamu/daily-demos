@@ -5,6 +5,7 @@ import './Chat.css';
 export default function Chat(props) {
   const callObject = useContext(CallObjectContext);
   const [inputValue, setInputValue] = useState('');
+  const [chatHistory, setChatHistory] = useState([]);
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
@@ -16,8 +17,8 @@ export default function Chat(props) {
       ? callObject.participants().local.user_name
       : 'Guest';
     callObject.sendAppMessage({ message: inputValue }, '*');
-    props.setChatHistory([
-      ...props.chatHistory,
+    setChatHistory([
+      ...chatHistory,
       {
         sender: name,
         message: inputValue,
@@ -25,9 +26,44 @@ export default function Chat(props) {
     ]);
   }
 
+  /**
+   * Update chat state based on a message received to all participants.
+   *
+   */
+  useEffect(() => {
+    if (!callObject) {
+      return;
+    }
+
+    function handleAppMessage(event) {
+      console.log('debug');
+      const participants = callObject.participants();
+      const name = participants[event.fromId].user_name
+        ? participants[event.fromId].user_name
+        : 'Guest';
+      setChatHistory([
+        ...chatHistory,
+        {
+          sender: name,
+          message: event.data.message,
+        },
+      ]);
+    }
+
+    callObject.on('app-message', handleAppMessage);
+
+    return function cleanup() {
+      callObject.off('app-message', handleAppMessage);
+    };
+  }, [callObject, chatHistory]);
+
+  useEffect(() => {
+    console.log(...chatHistory);
+  }, [chatHistory]);
+
   return (
     <div className="chat">
-      {props.chatHistory.map((entry, index) => (
+      {chatHistory.map((entry, index) => (
         <div key={`entry-${index}`} className="messageList">
           <b>{entry.sender}</b>: {entry.message}
         </div>
@@ -48,56 +84,3 @@ export default function Chat(props) {
     </div>
   );
 }
-
-// export default class Chat extends Component {
-//   // static contextType lets me access the nearest CallObjectContext via "this.context"
-//   static contextType = CallObjectContext;
-
-//   // Setting up state
-//   constructor() {
-//     super();
-//     this.state = {
-//       inputValue: '',
-//       messages: [{ participant: 'Kimee', message: 'Hello, world!' }],
-//     };
-
-//     this.handleChange = this.handleChange.bind(this);
-//     this.handleSubmit = this.handleSubmit.bind(this);
-//   }
-
-//   // Update the input value
-//   handleChange(event) {
-//     this.setState({ inputValue: event.target.value });
-//   }
-
-//   handleSubmit = () => {
-//     console.log(this.state.inputValue);
-//     this.context.sendAppMessage({ hello: 'world' }, '*');
-//   };
-
-//   render() {
-//     const messages = this.state.messages.map((message) => (
-//       <div>
-//         {message.participant}: {message.message}
-//       </div>
-//     ));
-//     return (
-//       <div className="chat">
-//         <div>{messages}</div>
-//         <label for="chatInput">
-//           <input
-//             id="chatInput"
-//             className="chat-input"
-//             type="text"
-//             placeholder="Type your message here.."
-//             value={this.state.inputValue}
-//             onChange={this.handleChange}
-//           ></input>
-//         </label>
-//         <button onClick={this.handleSubmit} className="send-chat-button">
-//           SEND
-//         </button>
-//       </div>
-//     );
-//   }
-// }
