@@ -61,7 +61,7 @@ export default function Chat(props) {
     console.log(...chatHistory);
   }, [chatHistory]);
 
-  return (
+  return props.onClickDisplay ? (
     <div className="chat">
       {chatHistory.map((entry, index) => (
         <div key={`entry-${index}`} className="messageList">
@@ -82,5 +82,5 @@ export default function Chat(props) {
         Send
       </button>
     </div>
-  );
+  ) : null;
 }

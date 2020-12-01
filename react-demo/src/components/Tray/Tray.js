@@ -44,7 +44,6 @@ export default function Tray(props) {
   const [isCameraMuted, setCameraMuted] = useState(false);
   const [isMicMuted, setMicMuted] = useState(false);
   const [isSharingScreen, setSharingScreen] = useState(false);
-  // Boolean state to flag if chat should be displayed
   const [displayChat, setChatDisplay] = useState(false);
 
   function toggleCamera() {
@@ -128,7 +127,7 @@ export default function Tray(props) {
         onClick={toggleChat}
       />
       {/* Chat rendered depending on boolean state */}
-      {displayChat && <Chat />}
+      <Chat onClickDisplay={displayChat} />
       <TrayButton
         type={TYPE_LEAVE}
         disabled={props.disabled}
