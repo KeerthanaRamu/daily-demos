@@ -12,10 +12,10 @@ export default function Chat(props) {
   };
 
   function handleSubmit() {
+    callObject.sendAppMessage({ message: inputValue }, '*');
     const name = callObject.participants().local.user_name
       ? callObject.participants().local.user_name
       : 'Guest';
-    callObject.sendAppMessage({ message: inputValue }, '*');
     setChatHistory([
       ...chatHistory,
       {
