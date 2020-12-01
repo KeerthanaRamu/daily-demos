@@ -10,7 +10,6 @@ async function run() {
   // room = { url: 'https://your-domain.daily.co/hello' }
   room = await createMtgRoom();
 
-  // Create the DailyIframe, passing styling properties to make it fullscreen
   window.callFrame = window.DailyIframe.createFrame({
     iframeStyle: {
       position: 'fixed',
@@ -22,7 +21,6 @@ async function run() {
     },
   });
 
-  // Install event handlers
   callFrame
     .on('loading', showEvent)
     .on('loaded', showEvent)
@@ -41,27 +39,22 @@ async function run() {
     .on('app-message', showEvent)
     .on('input-event', showEvent)
     .on('error', showEvent)
-    // Add a leave handler to clean things up
-    .on('left-meeting', leave);
+    .on('left-meeting', handleLeaveCallClick);
 
-  // Join the room
   await callFrame.join({
     url: room.url,
     showLeaveButton: true,
   });
 
-  // Leave handler
-  function leave(e) {
+  function handleLeaveCallClick(e) {
     const startButton = document.getElementsByClassName('start-button')[0];
     showEvent(e);
     callFrame.destroy();
     startButton.classList.remove('hide');
   }
 
-  // Once a call starts running, hide the start button and prompts
   document.getElementsByClassName('start-button')[0].classList.add('hide');
 
-  // Log information about the call to the console
   console.log(
     ' You are connected to',
     callFrame.properties.url,
