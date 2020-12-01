@@ -45,6 +45,7 @@ export default function Tray(props) {
   const [isMicMuted, setMicMuted] = useState(false);
   const [isSharingScreen, setSharingScreen] = useState(false);
   const [displayChat, setChatDisplay] = useState(false);
+  const [highlightedChat, setChatHighlight] = useState(false);
 
   function toggleCamera() {
     callObject.setLocalVideo(isCameraMuted);
@@ -64,9 +65,17 @@ export default function Tray(props) {
     props.onClickLeaveCall && props.onClickLeaveCall();
   }
 
-  // Sets the chat flag to its opposite
   function toggleChat() {
     setChatDisplay(!displayChat);
+    if (highlightedChat) {
+      setChatHighlight(!highlightedChat);
+    }
+  }
+
+  function handleNewChat() {
+    console.log(highlightedChat);
+    setChatHighlight(!highlightedChat);
+    console.log(highlightedChat);
   }
 
   /**
@@ -123,11 +132,11 @@ export default function Tray(props) {
       <TrayButton
         type={TYPE_CHAT}
         disabled={props.disabled}
-        // highlighted={}
+        highlighted={highlightedChat}
         onClick={toggleChat}
       />
       {/* Chat rendered depending on boolean state */}
-      <Chat onClickDisplay={displayChat} />
+      <Chat onClickDisplay={displayChat} notification={handleNewChat} />
       <TrayButton
         type={TYPE_LEAVE}
         disabled={props.disabled}

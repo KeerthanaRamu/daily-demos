@@ -11,7 +11,6 @@ export default function Chat(props) {
     setInputValue(event.target.value);
   };
 
-  // Handles the local update, and also broadcasts the update to the app-level history (so all participants see)
   function handleSubmit() {
     const name = callObject.participants().local.user_name
       ? callObject.participants().local.user_name
@@ -36,7 +35,6 @@ export default function Chat(props) {
     }
 
     function handleAppMessage(event) {
-      console.log('debug');
       const participants = callObject.participants();
       const name = participants[event.fromId].user_name
         ? participants[event.fromId].user_name
@@ -48,6 +46,8 @@ export default function Chat(props) {
           message: event.data.message,
         },
       ]);
+      // Make other icons light up
+      props.notification();
     }
 
     callObject.on('app-message', handleAppMessage);
