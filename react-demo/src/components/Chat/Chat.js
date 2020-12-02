@@ -24,6 +24,7 @@ export default function Chat(props) {
         message: inputValue,
       },
     ]);
+    setInputValue('');
   }
 
   /**
@@ -58,9 +59,7 @@ export default function Chat(props) {
     };
   }, [callObject, chatHistory]);
 
-  useEffect(() => {
-    console.log(...chatHistory);
-  }, [chatHistory]);
+  useEffect(() => {}, [chatHistory]);
 
   return props.onClickDisplay ? (
     <div className="chat">

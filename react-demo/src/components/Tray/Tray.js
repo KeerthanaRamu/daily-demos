@@ -73,9 +73,7 @@ export default function Tray(props) {
   }
 
   function handleNewChat() {
-    console.log(highlightedChat);
     setChatHighlight(!highlightedChat);
-    console.log(highlightedChat);
   }
 
   /**
