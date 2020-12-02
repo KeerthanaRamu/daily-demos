@@ -11,7 +11,8 @@ export default function Chat(props) {
     setInputValue(event.target.value);
   };
 
-  function handleSubmit() {
+  function handleSubmit(event) {
+    event.preventDefault();
     callObject.sendAppMessage({ message: inputValue }, '*');
     const name = callObject.participants().local.user_name
       ? callObject.participants().local.user_name
@@ -68,7 +69,8 @@ export default function Chat(props) {
           <b>{entry.sender}</b>: {entry.message}
         </div>
       ))}
-      <label htmlFor="chatInput">
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="chatInput"></label>
         <input
           id="chatInput"
           className="chat-input"
@@ -77,10 +79,10 @@ export default function Chat(props) {
           value={inputValue}
           onChange={handleChange}
         ></input>
-      </label>
-      <button onClick={handleSubmit} className="send-chat-button">
-        Send
-      </button>
+        <button type="submit" className="send-chat-button">
+          Send
+        </button>
+      </form>
     </div>
   ) : null;
 }
